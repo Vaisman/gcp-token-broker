@@ -26,6 +26,9 @@ import com.google.cloud.broker.apps.brokerserver.protobuf.BrokerGrpc;
 
 class GrpcUtils {
 
+    private GrpcUtils() {
+    }
+
     static ManagedChannel newManagedChannel(String brokerHostname, int brokerPort, boolean useTLS, String tlsCertificate) {
         // Create the gRPC stub
         NettyChannelBuilder builder = NettyChannelBuilder.forAddress(brokerHostname, brokerPort);

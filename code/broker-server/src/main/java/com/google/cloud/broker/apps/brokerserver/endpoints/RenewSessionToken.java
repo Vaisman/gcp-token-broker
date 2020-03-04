@@ -29,6 +29,9 @@ import com.google.cloud.broker.apps.brokerserver.protobuf.RenewSessionTokenRespo
 
 public class RenewSessionToken {
 
+    private RenewSessionToken() {
+    }
+
     public static void run(RenewSessionTokenRequest request, StreamObserver<RenewSessionTokenResponse> responseObserver) {
         AbstractAuthenticationBackend authenticator = AbstractAuthenticationBackend.getInstance();
         String authenticatedUser = authenticator.authenticateUser();

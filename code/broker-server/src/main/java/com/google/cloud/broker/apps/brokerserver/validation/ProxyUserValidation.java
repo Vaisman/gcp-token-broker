@@ -34,9 +34,12 @@ import com.google.cloud.broker.utils.Constants;
 
 public class ProxyUserValidation {
 
-    private final static String CONFIG_PROXY = "proxy";
-    private final static String CONFIG_GROUPS = "groups";
-    private final static String CONFIG_USERS = "users";
+    private ProxyUserValidation() {
+    }
+
+    private static final String CONFIG_PROXY = "proxy";
+    private static final String CONFIG_GROUPS = "groups";
+    private static final String CONFIG_USERS = "users";
 
     private static boolean isWhitelistedByUsername(Config proxyConfig, String impersonated) {
         // Check if user is whitelisted directly by name

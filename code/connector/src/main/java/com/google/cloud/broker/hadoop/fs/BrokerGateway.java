@@ -35,10 +35,10 @@ final class BrokerGateway {
     private ManagedChannel managedChannel;
     private Configuration config;
 
-    private final String CONFIG_URI = "gcp.token.broker.uri";
-    private final String CONFIG_PRINCIPAL = "gcp.token.broker.kerberos.principal";
-    private final String CONFIG_CERTIFICATE = "gcp.token.broker.tls.certificate";
-    private final String CONFIG_CERTIFICATE_PATH = "gcp.token.broker.tls.certificate.path";
+    private static final String CONFIG_URI = "gcp.token.broker.uri";
+    private static final String CONFIG_PRINCIPAL = "gcp.token.broker.kerberos.principal";
+    private static final String CONFIG_CERTIFICATE = "gcp.token.broker.tls.certificate";
+    private static final String CONFIG_CERTIFICATE_PATH = "gcp.token.broker.tls.certificate.path";
 
 
     BrokerGateway(Configuration config) {

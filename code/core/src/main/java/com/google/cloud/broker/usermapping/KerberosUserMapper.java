@@ -31,7 +31,8 @@ import com.typesafe.config.ConfigException;
 public class KerberosUserMapper extends AbstractUserMapper {
 
     private List<Rule> rulesList = new ArrayList<>();
-    private final static String INVALID_SETTING = "Invalid `" + AppSettings.USER_MAPPING_RULES + "` setting -- ";
+    private static final String INVALID_SETTING = "Invalid `" + AppSettings.USER_MAPPING_RULES + "` setting -- ";
+    private static final String INVALID_EXPRESSION = "Invalid expression: %s%s%s";
 
     static class KerberosName {
         private final String primary;
@@ -95,7 +96,7 @@ public class KerberosUserMapper extends AbstractUserMapper {
                 ObjectTruthValue.evaluate(interpreter.resolveELExpression(ifCondition, 0));
             }
             catch (UnknownTokenException e) {
-                throw new IllegalArgumentException(String.format("Invalid expression: %s\n%s", ifCondition, e.getMessage()));
+                throw new IllegalArgumentException(String.format(INVALID_EXPRESSION, ifCondition, System.lineSeparator(), e.getMessage()));
             }
             checkForSyntaxErrors(interpreter, ifCondition);
 
@@ -105,19 +106,19 @@ public class KerberosUserMapper extends AbstractUserMapper {
                 interpreter.resolveELExpression(then, 0);
             }
             catch (UnknownTokenException e) {
-                throw new IllegalArgumentException(String.format("Invalid expression: %s\n%s", then, e.getMessage()));
+                throw new IllegalArgumentException(String.format(INVALID_EXPRESSION, then, System.lineSeparator(), e.getMessage()));
             }
             checkForSyntaxErrors(interpreter, then);
         }
 
         private static void checkForSyntaxErrors(JinjavaInterpreter interpreter, String expression) {
             List<TemplateError> errors = interpreter.getErrors();
-            if (errors.size() > 0) {
+            if (!errors.isEmpty()) {
                 StringBuilder message = new StringBuilder();
                 for (TemplateError error: errors) {
                     message.append(error.getMessage());
                 }
-                throw new IllegalArgumentException(String.format("Invalid expression: %s\n%s", expression, message));
+                throw new IllegalArgumentException(String.format(INVALID_EXPRESSION, expression, System.lineSeparator(), message));
             }
         }
 

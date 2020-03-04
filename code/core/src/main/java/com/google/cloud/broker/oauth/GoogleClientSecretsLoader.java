@@ -26,18 +26,16 @@ import com.typesafe.config.ConfigException;
 
 public class GoogleClientSecretsLoader {
 
+    private GoogleClientSecretsLoader() {
+    }
+
     public static GoogleClientSecrets getSecrets() {
         try {
             String jsonPath = AppSettings.getInstance().getString(AppSettings.OAUTH_CLIENT_SECRET_JSON_PATH);
             // Load the JSON file if provided
             File secretJson = new java.io.File(jsonPath);
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-            try {
-                InputStream in = new FileInputStream(secretJson);
-                return GoogleClientSecrets.load(jsonFactory, new InputStreamReader(in));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            return loadGoogleClientSecrets(secretJson, jsonFactory);
         } catch (ConfigException.Missing e) {
             // The JSON path setting was not provided, so we try with other settings
             try {
@@ -54,6 +52,14 @@ public class GoogleClientSecretsLoader {
             } catch (ConfigException.Missing ex) {
                 throw new RuntimeException("OAuth misconfigured");
             }
+        }
+    }
+
+    private static GoogleClientSecrets loadGoogleClientSecrets(File secretJson, JsonFactory jsonFactory) {
+        try (InputStream in = new FileInputStream(secretJson)) {
+            return GoogleClientSecrets.load(jsonFactory, new InputStreamReader(in));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

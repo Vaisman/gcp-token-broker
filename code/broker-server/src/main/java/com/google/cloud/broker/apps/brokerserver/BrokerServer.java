@@ -83,7 +83,7 @@ public class BrokerServer {
             builder.sslContext(getSslContextBuilder().build());
         }
         server =  builder.build().start();
-        logger.info("Server listening on " + port + "...");
+        logger.info("Server listening on {} ...", port);
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {

@@ -62,7 +62,7 @@ public class Session extends Model {
     }
 
     public Map<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("owner", owner);
         map.put("renewer", renewer);

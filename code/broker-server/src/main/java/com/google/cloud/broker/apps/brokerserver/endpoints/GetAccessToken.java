@@ -14,8 +14,6 @@ package com.google.cloud.broker.apps.brokerserver.endpoints;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.base.Preconditions;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.MDC;
 
@@ -34,6 +32,9 @@ import com.google.cloud.broker.apps.brokerserver.protobuf.GetAccessTokenResponse
 
 
 public class GetAccessToken {
+
+    private GetAccessToken() {
+    }
 
     public static void run(GetAccessTokenRequest request, StreamObserver<GetAccessTokenResponse> responseObserver) {
         // First try to authenticate the session, if any.

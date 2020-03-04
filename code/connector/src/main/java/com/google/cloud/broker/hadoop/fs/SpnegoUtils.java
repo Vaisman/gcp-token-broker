@@ -15,6 +15,9 @@ import org.ietf.jgss.*;
 
 final class SpnegoUtils {
 
+    private SpnegoUtils() {
+    }
+
     private static final String SPNEGO_OID = "1.3.6.1.5.5.2";
     private static final String KRB5_MECHANISM_OID = "1.2.840.113554.1.2.2";
     private static final String KRB5_PRINCIPAL_NAME_OID = "1.2.840.113554.1.2.2.1";

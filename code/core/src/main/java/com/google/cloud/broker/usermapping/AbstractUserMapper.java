@@ -11,9 +11,6 @@
 
 package com.google.cloud.broker.usermapping;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.google.cloud.broker.settings.AppSettings;
 import com.google.cloud.broker.utils.InstanceUtils;
 
@@ -29,5 +26,5 @@ public abstract class AbstractUserMapper {
         return instance;
     }
 
-    abstract public String map(String name);
+    public abstract String map(String name);
 }

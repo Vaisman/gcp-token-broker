@@ -13,6 +13,9 @@ package com.google.cloud.broker.utils;
 
 public class Constants {
 
-    public final static String APPLICATION_NAME = "gcp-token-broker";
+    private Constants() {
+    }
+
+    public static final String APPLICATION_NAME = "gcp-token-broker";
 
 }

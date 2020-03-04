@@ -35,8 +35,8 @@ import com.google.cloud.broker.settings.AppSettings;
 
 public class SpnegoAuthenticator extends AbstractAuthenticationBackend {
 
-    private ArrayList<Subject> logins = new ArrayList<Subject>();
-    private final static String INVALID_SETTING = "Invalid `" + AppSettings.KEYTABS + "` setting";
+    private ArrayList<Subject> logins = new ArrayList<>();
+    private static final String INVALID_SETTING = "Invalid `" + AppSettings.KEYTABS + "` setting";
 
     private void initLogin() {
         // Parse the keytabs setting
@@ -63,7 +63,7 @@ public class SpnegoAuthenticator extends AbstractAuthenticationBackend {
             logins.add(subject);
         }
 
-        if (logins.size() == 0) {
+        if (logins.isEmpty()) {
             throw new IllegalArgumentException(INVALID_SETTING);
         }
     }
@@ -85,7 +85,7 @@ public class SpnegoAuthenticator extends AbstractAuthenticationBackend {
         return new Configuration() {
             @Override
             public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-                Map<String, String> options = new HashMap<String, String>();
+                Map<String, String> options = new HashMap<>();
                 options.put("principal", principal);
                 options.put("keyTab", keytabFile.getPath());
                 options.put("doNotPrompt", "true");

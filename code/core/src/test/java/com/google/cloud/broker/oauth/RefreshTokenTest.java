@@ -24,7 +24,7 @@ public class RefreshTokenTest {
 
     @Test
     public void testFromMap() {
-        HashMap<String, Object> values = new HashMap<String, Object>();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("id", "alice@example.com");
         values.put("creationTime", 2222222222222L);
         values.put("value", "xyz".getBytes());

@@ -23,6 +23,9 @@ import com.google.cloud.broker.apps.brokerserver.ClientAddressServerInterceptor;
 
 public class LoggingUtils {
 
+    private LoggingUtils() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static void logSuccess(String endpointName) {

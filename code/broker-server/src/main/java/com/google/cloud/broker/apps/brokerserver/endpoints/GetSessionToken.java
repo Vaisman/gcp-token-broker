@@ -32,6 +32,9 @@ import com.google.cloud.broker.apps.brokerserver.protobuf.GetSessionTokenRespons
 
 public class GetSessionToken {
 
+    private GetSessionToken() {
+    }
+
     public static void run(GetSessionTokenRequest request, StreamObserver<GetSessionTokenResponse> responseObserver) {
         AbstractAuthenticationBackend authenticator = AbstractAuthenticationBackend.getInstance();
         String authenticatedUser = authenticator.authenticateUser();

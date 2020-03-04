@@ -32,7 +32,7 @@ import io.grpc.Status;
 
 public class DomainWideDelegationAuthorityProvider extends AbstractUserProvider {
 
-    private final static String IAM_API = "https://www.googleapis.com/auth/iam";
+    private static final String IAM_API = "https://www.googleapis.com/auth/iam";
 
     private String getSignedJWT(String googleIdentity, List<String> scopes) {
         GoogleCredentials credentials;

@@ -16,6 +16,9 @@ import java.lang.reflect.InvocationTargetException;
 
 public class InstanceUtils {
 
+    private InstanceUtils() {
+    }
+
     public static Object invokeConstructor(String className) {
         try {
             Class<?> c = Class.forName(className);

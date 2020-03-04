@@ -28,6 +28,9 @@ import com.google.cloud.broker.apps.brokerserver.protobuf.CancelSessionTokenResp
 
 public class CancelSessionToken {
 
+    private CancelSessionToken() {
+    }
+
     public static void run(CancelSessionTokenRequest request, StreamObserver<CancelSessionTokenResponse> responseObserver) {
         AbstractAuthenticationBackend authenticator = AbstractAuthenticationBackend.getInstance();
         String authenticatedUser = authenticator.authenticateUser();

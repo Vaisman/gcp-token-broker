@@ -13,6 +13,9 @@ package com.google.cloud.broker.utils;
 
 public final class TimeUtils {
 
+    private TimeUtils() {
+    }
+
     public static long currentTimeMillis() {
         return System.currentTimeMillis();
     }

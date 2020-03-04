@@ -21,6 +21,9 @@ import com.google.cloud.broker.settings.AppSettings;
 
 public class Validation {
 
+    private Validation() {
+    }
+
     public static void validateParameterIsEmpty(String parameter, String value) {
         if (value.length() > 0) {
             throw Status.INVALID_ARGUMENT
@@ -30,7 +33,7 @@ public class Validation {
     }
 
     public static void validateParameterIsEmpty(String parameter, List<String> values) {
-        if (values.size() > 0) {
+        if (!values.isEmpty()) {
             throw Status.INVALID_ARGUMENT
                 .withDescription(String.format("Request's parameter `%s` must be empty", parameter))
                 .asRuntimeException();
@@ -38,7 +41,7 @@ public class Validation {
     }
 
     public static void validateParameterNotEmpty(String parameter, String value) {
-        if (value.length() == 0) {
+        if (value.isEmpty()) {
             throw Status.INVALID_ARGUMENT
                 .withDescription(String.format("Request must provide `%s`", parameter))
                 .asRuntimeException();
@@ -46,7 +49,7 @@ public class Validation {
     }
 
     public static void validateParameterNotEmpty(String parameter, List<String> values) {
-        if (values.size() == 0) {
+        if (values.isEmpty()) {
             throw Status.INVALID_ARGUMENT
                 .withDescription(String.format("Request must provide `%s`", parameter))
                 .asRuntimeException();
@@ -55,8 +58,8 @@ public class Validation {
 
     public static void validateScopes(List<String> scopes) {
         List<String> whitelist = AppSettings.getInstance().getStringList(AppSettings.SCOPES_WHITELIST);
-        Set<String> scopeSet = new HashSet<String>(scopes);
-        Set<String> whitelistSet = new HashSet<String>(whitelist);
+        Set<String> scopeSet = new HashSet<>(scopes);
+        Set<String> whitelistSet = new HashSet<>(whitelist);
         if (!whitelistSet.containsAll(scopeSet)) {
             throw Status.PERMISSION_DENIED
                 .withDescription(String.format("`[%s]` are not whitelisted scopes", String.join(",", scopes)))

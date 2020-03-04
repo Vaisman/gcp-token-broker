@@ -36,6 +36,9 @@ import com.google.cloud.broker.database.backends.AbstractDatabaseBackend;
 
 public class SessionTokenUtils {
 
+    private SessionTokenUtils() {
+    }
+
     private static String TOKEN_SEPARATOR = ".";
 
     private static SessionToken unmarshallSessionToken(String token) {

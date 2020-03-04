@@ -12,9 +12,7 @@
 package com.google.cloud.broker.hadoop.fs;
 
 import java.io.IOException;
-import java.security.PrivilegedAction;
 import java.util.Collections;
-import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.Text;
@@ -34,7 +32,7 @@ public final class BrokerAccessTokenProvider implements AccessTokenProvider {
     private BrokerTokenIdentifier tokenIdentifier;
     private Text service;
 
-    private final static AccessToken EXPIRED_TOKEN = new AccessToken("", -1L);
+    private static final AccessToken EXPIRED_TOKEN = new AccessToken("", -1L);
 
     public BrokerAccessTokenProvider(Text service) {
         this.service = service;

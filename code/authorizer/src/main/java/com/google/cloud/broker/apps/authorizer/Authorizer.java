@@ -95,16 +95,17 @@ public class Authorizer implements AutoCloseable {
         .build();
     private static final String GOOGLE_LOGIN_URI = "/google/login";
     private static final String GOOGLE_OAUTH2_CALLBACK_URI = "/google/oauth2callback";
-    private static final String host = AppSettings.getInstance().getString(AppSettings.AUTHORIZER_HOST);
-    private static final int port = AppSettings.getInstance().getInt(AppSettings.AUTHORIZER_PORT);
+    private static final String HOST = AppSettings.getInstance().getString(AppSettings.AUTHORIZER_HOST);
+    private static final int PORT = AppSettings.getInstance().getInt(AppSettings.AUTHORIZER_PORT);
     @VisibleForTesting
     AuthorizerServlet servlet;
 
 
     public static void main(String[] args) throws Exception {
-        Authorizer authorizer = new Authorizer();
-        authorizer.start();
-        authorizer.join();
+        try (Authorizer authorizer = new Authorizer()) {
+            authorizer.start();
+            authorizer.join();
+        }
     }
 
     private static void setLoggingLevel() {
@@ -126,7 +127,7 @@ public class Authorizer implements AutoCloseable {
         ctx.addServlet(new ServletHolder(servlet), "/");
 
         // Instantiate the server
-        server = new Server(new InetSocketAddress(host, port));
+        server = new Server(new InetSocketAddress(HOST, PORT));
         server.setHandler(ctx);
         server.setStopAtShutdown(true);
         server.setErrorHandler(new CustomErrorHandler());

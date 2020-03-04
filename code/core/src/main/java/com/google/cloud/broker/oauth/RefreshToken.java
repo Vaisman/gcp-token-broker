@@ -37,7 +37,7 @@ public class RefreshToken extends Model {
 
     @Override
     public Map<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("value", value);
         map.put("creationTime", creationTime);
